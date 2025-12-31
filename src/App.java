@@ -1,16 +1,13 @@
-import java.swing.*;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
-
-
 public class App {
+
+    // variable to keep track of current index in the list
+    // --- why is this static? ---
+    private static int currentIndex = 0;
+
     public static void main(String[] args) throws Exception {
         // create a list of top 5 things
         String[] top5 = {
@@ -20,8 +17,6 @@ public class App {
             "4. Sports",
             "5. Travel"
         };
-        // variable to keep track of current index in the list
-        int currentIndex = 0;
 
          // A JFrame is a window where we can design our UI
         JFrame frame = new JFrame("My Top 5 List");
@@ -40,7 +35,7 @@ public class App {
         outputLabel.setForeground(Color.BLUE);
 
         // the output label will display the first item in the list initially
-        outputLabel.setText(top5[currentIndex]);
+        outputLabel.setText( top5[currentIndex] );
 
         // add components to JFrame f
         frame.add(outputLabel);
@@ -49,12 +44,29 @@ public class App {
         // add event listener for button click
         nextButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            int index = currentIndex;
-            index = (currentIndex == top5.length - 1) ? 0 : (index + 1);
-            outputLabel.setText(top5[index]);
+            currentIndex = getNextIndex(currentIndex, top5.length);
+            outputLabel.setText(top5[currentIndex]);
         }    });
+
+
 
         // make the frame visible
         frame.setVisible(true);
     }
+
+    /**
+     *  find the next index in the list
+     * @param currentIndex
+     * @param listLength
+     * @return next index
+     */
+        public static int getNextIndex(int currentIndex, int listLength) {
+            if (currentIndex == listLength - 1) {
+                return 0; // wrap around to the start
+            }
+            else {
+                return currentIndex + 1; // move to the next index
+            }
+        }
 }
+
