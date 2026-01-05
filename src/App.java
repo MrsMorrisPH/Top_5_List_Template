@@ -5,11 +5,12 @@ import java.awt.event.*;
 public class App {
 
     // variable to keep track of current index in the list
-    // --- why is this static? ---
+    // --- TO DO: why is this static? ---
     private static int currentIndex = 0;
 
     public static void main(String[] args) throws Exception {
         // create a list of top 5 things
+        // --- TO DO: Change to your own list ---
         String[] top5 = {
             "1. Coding",
             "2. Music",
@@ -26,6 +27,7 @@ public class App {
         // create a Button and a Label
         JButton nextButton = new JButton("Next");
         JLabel outputLabel = new JLabel();
+        // --- TO DO: create a back button, format, and add it to the frame ---
 
         // place and size for components
         // setBounds(x position, y position, width, height)
@@ -48,6 +50,8 @@ public class App {
             outputLabel.setText(top5[currentIndex]);
         }    });
 
+        // --- TO DO: add event listener for back button ---
+        // --- TO DO: create a getPreviousIndex function, see below ---
 
 
         // make the frame visible
@@ -68,5 +72,14 @@ public class App {
                 return currentIndex + 1; // move to the next index
             }
         }
+
+    // --- TO DO: create a getPreviousIndex function ---
+    /**
+     *  find the next index in the list
+     * @param currentIndex
+     * @param listLength
+     * @return previous index
+     */
+    
 }
 
